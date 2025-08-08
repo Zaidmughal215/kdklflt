@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Social Media Growth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f0f0f0, #dcdcdc);
+      margin: 0;
+      padding: 20px;
+      transition: background 0.5s, color 0.5s;
+    }
+    body.dark {
+      background: linear-gradient(135deg, #1e1e1e, #121212);
+      color: #f1f1f1;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .toggle-dark {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .inputs {
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .inputs input {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      width: 260px;
+    }
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.5s ease forwards;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+    .card:nth-child(1) { background-color: #ffe6f0; animation-delay: 0.1s; }
+    .card:nth-child(2) { background-color: #e6f7ff; animation-delay: 0.2s; }
+    .card:nth-child(3) { background-color: #e6ffe6; animation-delay: 0.3s; }
+    .card:nth-child(4) { background-color: #fff0e6; animation-delay: 0.4s; }
+    .card:nth-child(5) { background-color: #f0e6ff; animation-delay: 0.5s; }
+    .card:nth-child(6) { background-color: #fffbe6; animation-delay: 0.6s; }
+
+    .card-icon {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    body.dark .card {
+      background: rgba(40, 40, 40, 0.85);
+      color: #fff;
+    }
+    .card h2 {
+      margin: 10px 0;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    .price {
+      font-weight: bold;
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+    .order-btn {
+      background-color: #25D366;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .order-btn i {
+      margin-right: 8px;
+    }
+    .order-btn:hover {
+      background-color: #128C7E;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>📈 Social Media Growth</h1>
+
+  <div class="toggle-dark">
+    <label>
+      <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()" />
+      Enable Dark Mode
+    </label>
+  </div>
+
+  <div class="inputs">
+    <input type="text" id="clientName" placeholder="Your Name" required>
+    <input type="email" id="clientEmail" placeholder="Your Email" required>
+  </div>
+
+  <div class="card-container">
+    <!-- TikTok Followers -->
+    <div class="card">
+      <div class="card-icon"><i class="fab fa-tiktok"></i></div>
+      <h2>TikTok Followers</h2>
+      <input type="number" min="1" max="10000" placeholder="Enter Quantity" oninput="updateCustomPrice(this, 0.65, 'price1')">
+      <div class="price" id="price1">PKR 0</div>
+      <button class="order-btn" onclick="redirectToWhatsApp('TikTok Followers', this)"><i class="fab fa-whatsapp"></i>Order on WhatsApp</button>
+    </div>
+
+    <!-- Instagram Followers -->
+    <div class="card">
+      <div class="card-icon"><i class="fab fa-instagram"></i></div>
+      <h2>Instagram Followers</h2>
+      <input type="number" min="1" max="10000" placeholder="Enter Quantity" oninput="updateCustomPrice(this, 0.65, 'price2')">
+      <div class="price" id="price2">PKR 0</div>
+      <button class="order-btn" onclick="redirectToWhatsApp('Instagram Followers', this)"><i class="fab fa-whatsapp"></i>Order on WhatsApp</button>
+    </div>
+
+    <!-- TikTok Likes -->
+    <div class="card">
+      <div class="card-icon"><i class="fab fa-tiktok"></i></div>
+      <h2>TikTok Likes</h2>
+      <input type="number" min="1" max="10000" placeholder="Enter Quantity" oninput="updateCustomPrice(this, 0.25, 'price3')">
+      <div class="price" id="price3">PKR 0</div>
+      <button class="order-btn" onclick="redirectToWhatsApp('TikTok Likes', this)"><i class="fab fa-whatsapp"></i>Order on WhatsApp</button>
+    </div>
+
+    <!-- Instagram Likes -->
+    <div class="card">
+      <div class="card-icon"><i class="fab fa-instagram"></i></div>
+      <h2>Instagram Likes</h2>
+      <input type="number" min="1" max="10000" placeholder="Enter Quantity" oninput="updateCustomPrice(this, 0.35, 'price4')">
+      <div class="price" id="price4">PKR 0</div>
+      <button class="order-btn" onclick="redirectToWhatsApp('Instagram Likes', this)"><i class="fab fa-whatsapp"></i>Order on WhatsApp</button>
+    </div>
+
+    <!-- TikTok Views -->
+    <div class="card">
+      <div class="card-icon"><i class="fab fa-tiktok"></i></div>
+      <h2>TikTok Views</h2>
+      <input type="number" min="1" max="10000" placeholder="Enter Quantity" oninput="updateCustomPrice(this, 0.05, 'price5')">
+      <div class="price" id="price5">PKR 0</div>
+      <button class="order-btn" onclick="redirectToWhatsApp('TikTok Views', this)"><i class="fab fa-whatsapp"></i>Order on WhatsApp</button>
+    </div>
+
+    <!-- Instagram Views -->
+    <div class="card">
+      <div class="card-icon"><i class="fab fa-instagram"></i></div>
+      <h2>Instagram Views</h2>
+      <input type="number" min="1" max="10000" placeholder="Enter Quantity" oninput="updateCustomPrice(this, 0.08, 'price6')">
+      <div class="price" id="price6">PKR 0</div>
+      <button class="order-btn" onclick="redirectToWhatsApp('Instagram Views', this)"><i class="fab fa-whatsapp"></i>Order on WhatsApp</button>
+    </div>
+  </div>
+
+  <script>
+    function updateCustomPrice(input, unitRate, priceId) {
+      const quantity = parseInt(input.value) || 0;
+      const price = (quantity * unitRate).toFixed(2);
+      document.getElementById(priceId).innerText = "PKR " + price;
+    }
+
+    function redirectToWhatsApp(serviceName, button) {
+      const card = button.closest('.card');
+      const quantityInput = card.querySelector("input[type='number']");
+      const quantity = parseInt(quantityInput.value) || 0;
+      const price = card.querySelector(".price").innerText;
+
+      const name = document.getElementById("clientName").value.trim();
+      const email = document.getElementById("clientEmail").value.trim();
+
+      if (!name || !email || quantity === 0) {
+        alert("Please fill in your name, email and a valid quantity.");
+        return;
+      }
+
+      const message = `📢 New Order Request:\n\n👤 Name: ${name}\n📧 Email: ${email}\n📱 Service: ${serviceName}\n🔢 Quantity: ${quantity}\n💰 Total: ${price}`;
+      const phoneNumber = "923444807064";
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+</body>
+</html>
